@@ -1,11 +1,59 @@
 /***********************************************************************************************************************
- * ESSENTIAL GIT COMMANDS
+ * ESSENTIAL TERMINAL COMMANDS
+ ***********************************************************************************************************************
+
+date 
+time
+whoami
+
+cd “name” 	// enter nested directory
+cd .. 		// exit current directory
+cd /  		// jump to root directory of your linux file system
+cd //
+cd /// 
+cd ~ 		// jump to users home directory
+
+
+ls		// list directory contents
+pwd
+
+mkdir “name” 		// make directory
+rmdir empty_dir	// remove empty directory
+rm -r dir_name 	// remove directory and contents
+rm file_name		// remove file
+
+mv “file_name” “new_name”
+mv “file_name” “directory_name”/
+cp og_name copy_name	// copy existing file
+
+touch file_name 	// create an empty file
+
+file name		// identify file type
+
+cat file.output 		// concatenates file contents to the standard output
+
+exit			// exit terminal
+
+/***********************************************************************************************************************
+ * ESSENTIAL GNU (GNUs Not Linux) COMMANDS 
  ***********************************************************************************************************************/
-git status
-git add “file_or_dir”
-git rm “file_or_dir”
-git commit -m “message”
-git push
+
+gcc file_name.c -o executable_name		// compile a c or cpp file with gcc (gnu compiler collection)
+
+
+/***********************************************************************************************************************
+ * ESSENTIAL PROCESS COMMANDS
+ ***********************************************************************************************************************/
+
+ps 			// show running processes
+top	
+htop 			// real-time process monitor
+kill pid			// terminate process by pid
+man some_cmd	// open manual
+clear			// clear terminal screen
+
+ctrl-C			// terminate current running program
+
 
 /***********************************************************************************************************************
  * ESSENTIAL GIT COMMANDS
@@ -86,6 +134,8 @@ git commit -m "Add filename.txt with initial content"
 
 // --- Push the commit to GitHub ---
 git push                         // uploads the commit to the remote main branch
+
+
 
 
 
