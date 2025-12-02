@@ -22,7 +22,14 @@ Once the request is made, the *Kernel* will reap any *ZOMBIE* process.
 Upon reaping, the *PID* of the child process is sent to the parent process, which is returnd by *wait()*. Finally our caller 
 process(parent) will return to a **READY** state.
 
+### sigwait():
+// int sigwait(const sigset_t *set, int *sig);
+
+
 ### fork()
+  - *Parameters*: None
+  - *Returns*:    pid_t <- (*PID* of child or 0)
+
 A new process is created by the fork() system call.
 A new process may be created with fork() without a new program being run-the new sub-process simply continues to execute exactly the same program that the first (parent) process was running.
 It is one of the most widely used system calls under process management.
@@ -97,6 +104,12 @@ Two models are used for inter-process communication
 **(2) Shared memory**(processes share memory region to communicate)
 The system calls under this are *pipe()* , *shmget()* , *mmap()*.
 
+### kill():
+  - **Parameters:** 1. pid_t pid <- (process id)
+                    2. int sig <- (signal number)
+
+The kill() system call is used to send a signal to a process.
+
 ### pipe():
 The pipe() system call is used to communicate between different Linux processes.
 It is mainly used for inter-process communication.
@@ -111,3 +124,14 @@ This system call is used to access the shared memory and access the messages in 
 This function call is used to map or unmap files or devices into memory.
 The mmap() system call is responsible for mapping the content of the file to the virtual memory space of the process.
 
+### mq_open():
+
+### mq_send(mq, msg_ptr, msg_size, msg_prio):
+  - **Parameters:** 1. mqd_t mqdes
+                    2.const char *msg_ptr 
+                    3. size_t msg_len
+                    4. unsigned int msg_prio);
+
+### mq_receive():
+
+### mq_close():
