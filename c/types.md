@@ -13,26 +13,34 @@ What is a struct?
 
 ### Defining Struct Type
 
-'''
+```
 //     tag_name
 struct Player {
   
   char name[20];
   int  score;
 };
-'''
+```
+
+### Defining an Typedef Struct
+
+```
+typedef struct {
+
+} name;
+```
 
 ### Instanciating a Struct
 
-'''
+```
 struct Player player1;
 struct Player player2;
-'''
+```
 
 ### Using a Struct
 
-''' 
+```
 player1.name = "Riey";
 player1.score = 69;
-'''
+```
 

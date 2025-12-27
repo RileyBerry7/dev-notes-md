@@ -127,11 +127,113 @@ The mmap() system call is responsible for mapping the content of the file to the
 ### mq_open():
 
 ### mq_send(mq, msg_ptr, msg_size, msg_prio):
-  - **Parameters:** 1. mqd_t mqdes
-                    2.const char *msg_ptr 
-                    3. size_t msg_len
+  - **Parameters:** 1. mqd_t        mqdes
+                    2. const  char* msg_ptr 
+                    3. size_t       msg_len
                     4. unsigned int msg_prio);
+  - **Returns:**
+Sends a message to a message queue.
+
 
 ### mq_receive():
+  - **Parameters:** 1. mqd_t  mq
+                    2. char   msg_ptr[msg_len],
+                    3. size_t msg_size
+                    4. size_t msg_len, unsigned int *msg_prio
+  
+  - **Returns:** Success: ssize_t : Size of message 
+                 Fail   : -1
+
+Recieves a message from a message queue.
+mq_receive() removes the oldest message with the highest priority
+       from the message queue referred to by the message queue descriptor
+       mqdes, and places it in the buffer pointed to by msg_ptr.  The
+       msg_len argument specifies the size of the buffer pointed to by
+       msg_ptr; this must be greater than or equal to the mq_msgsize
+       attribute of the queue (see mq_getattr(3)).  If msg_prio is not
+       NULL, then the buffer to which it points is used to return the
+       priority associated with the received message.
 
 ### mq_close():
+
+---
+
+
+## **Multi-threading**
+
+These types of system calls are specifically used to enable multi-threading within a process.
+Threads are sometimes called light-weight processes.
+To be more specific, threads break down a single process into multiple threads, all which execute at the "same time".
+Threads essentially enable concurrency at at an intra-process level.
+Threads of a process share all memory segments *except* for the **Stack**. Threads have independent *call stacks*.
+In theory memory across *call stacks* is still accesible, but you probably shouldn't do that.
+**Concurrency** exists without threads, but threads streamline **Shared Memory** between tasks.
+
+Beware there be *Deadlocks* and *Race Conditions*.
+
+---
+
+## POSIX Threads
+
+In C language, POSIX <pthread.h> standard API (Application program Interface) for all thread related functions. It allows us to create multiple threads for concurrent process flows. The type pthread_t is a unique identifier for a thread. In other words, think of this value as a key or an opaque ID mapping to a thread.
+
+You may have to compile with one of these:
+```
+gcc -pthread file.c
+gcc -lpthread file.c
+```
+
+### pthread_create()
+  - **Parameters:** 1. pthread_t*             thread            // thread ID
+                    2. const pthread_attr_t*  atrr              // attributes (NULL)
+                    3. void*                  (*routine)(void*) // function pointer
+                    4. void*                  arg);             // argument   (NULL | struct* for multiple args)
+ 
+- **Returns:**    - Integer value. 0 for success, -1 for failure 
+
+### pthread_exit()
+	Terminates the calling thread. This does not affect other threads.
+
+### pthread_join()
+	Waits for the specified thread to terminate. It blocks the calling thread until the target thread finishes.
+
+### pthread_detach()
+	Detaches a thread, meaning it will automatically release resources when it terminates without needing pthread_join()
+.
+
+### pthread_cancel()
+	Requests cancellation of a thread. The thread must check periodically for cancellation to exit safely.
+
+### pthread_self()
+	Returns the thread ID of the calling thread.
+
+### pthread_equal()
+	Compares two thread IDs and returns non-zero if they are the same, zero otherwise.
+
+### pthread_mutex_init()
+	Initializes a mutex, which is used to prevent race conditions in concurrent programming.
+
+### pthread_mutex_destroy()
+	Destroys a mutex when it's no longer needed.
+
+### pthread_mutex_lock()
+	Locks a mutex. If the mutex is already locked by another thread, the calling thread will be blocked.
+
+### pthread_mutex_unlock()
+	Unlocks a mutex that was previously locked by the calling thread.
+
+### pthread_cond_init()
+	Initializes a condition variable, used for synchronization between threads.
+
+### pthread_cond_destroy()
+	Destroys a condition variable.
+
+### pthread_cond_wait()
+	Blocks the calling thread until the condition variable is signaled.
+
+### pthread_cond_signal()
+	Wakes up one thread that is waiting on a condition variable.
+
+### pthread_cond_broadcast()
+	Wakes up all threads waiting on a condition variable.
+
