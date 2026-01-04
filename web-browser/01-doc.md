@@ -42,9 +42,18 @@ alert(window.innerHeight);
 
 ## DOM (Document Object Model)
 
-The **DOM** represents all page content as objects that can be modified.
-The *document* object is the main 'entry point' to the page. We can change or create anything on the page using it.
+The *Document Object Model* is a JavaScript object that represents all of the page content loaded by the Web-browser, all in the form of a tree structure where *document* is the root.
 
+The **DOM** represents all page content as objects that can be modified.
+The *document* object is the main 'ery point' to the page. We can change or create anything on the page using it.
+
+Example:
+```js
+
+document.body.style.backround = "red";
+
+setTimeout(() => document.body.style.backround = "", 1000);
+```
 ---
 
 ### 3. Walking the DOM
