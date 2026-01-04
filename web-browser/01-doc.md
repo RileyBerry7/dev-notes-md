@@ -14,42 +14,52 @@ A *host environment* provides its own objects and functions in addtion to the la
 Here is a bird's eye view of what we have when JS runs in a Web-browser:
 
 ```mermaid
-flowchart TD
-  %% Define nodes
-  A[Window]:::window
-  B[document]:::dom
-  C[navigator]:::bom
-  D[Object]:::js
+flowchart TB
+  %% Main root
+  A[Window]
 
   %% DOM Column
-  B --> B1[...]
-  
-  %% BOM Column
-  C --> D1[screen]
-  C --> D2[location]
-  C --> D3[frames]
-  C --> D4[history]
-  C --> D5[document]
-  C --> D6[XMLHttpRequest]
-  
-  %% JavaScript Objects Column
-  D --> J1[Array]
-  D --> J2[Function]
-  D --> J3[...]
+  subgraph DOM [DOM]
+    direction TB
+    B[document]
+    B1[...]
+  end
 
-  %% Connections
+  %% BOM Column
+  subgraph BOM [BOM]
+    direction TB
+    C[navigator]
+    C1[screen]
+    C2[location]
+    C3[frames]
+    C4[history]
+    C5[document]
+    C6[XMLHttpRequest]
+  end
+
+  %% JavaScript Objects Column
+  subgraph JS [JavaScript Objects]
+    direction TB
+    D[Object]
+    D1[Array]
+    D2[Function]
+    D3[...]
+  end
+
+  %% Connect root to column heads
   A --> B
   A --> C
   A --> D
 
-  %% Styles
-  classDef dom fill:#a8f0a0,stroke:#000,stroke-width:1px;  %% green
-  classDef bom fill:#a0c4f0,stroke:#000,stroke-width:1px;  %% blue
-  classDef js fill:#f0a0a0,stroke:#000,stroke-width:1px;   %% red
-  class A window
+  %% Styling columns
+  classDef dom fill:#a8f0a0,stroke:#000,stroke-width:1px;
+  classDef bom fill:#a0c4f0,stroke:#000,stroke-width:1px;
+  classDef js fill:#f0a0a0,stroke:#000,stroke-width:1px;
+
   class B,B1 dom
   class C,C1,C2,C3,C4,C5,C6 bom
   class D,D1,D2,D3 js
+
 ```
 
 ### 2. DOM tree
