@@ -15,7 +15,38 @@ Here is a bird's eye view of what we have when JS runs in a Web-browser:
 
 ![Alt text](table_1.png "Optional Title")
 
+There is a root object called *window*, and it has two roles.
+1. Serves as a global object for for the JavaScript code.
+2. Represents the "browser window" and provides an interface for controlling it.
+
+For instance we can use it as a global object:
+
+```js
+
+function sayHi(){
+  alert("Hello");
+}
+
+window.sayHi();   // <- Global functions are methods of global objects.
+```
+
+And we can use it as a browser window, to show the window height:
+
+```js
+alert(window.innerHeight);
+```
+
+---
+
 ### 2. DOM tree
+
+## DOM (Document Object Model)
+
+The **DOM** represents all page content as objects that can be modified.
+The *document* object is the main 'entry point' to the page. We can change or create anything on the page using it.
+
+---
+
 ### 3. Walking the DOM
 ### 4. Searching: getElement*, querySelector*
 ### 5. Node properties: type, tag and contents
