@@ -15,10 +15,41 @@ Here is a bird's eye view of what we have when JS runs in a Web-browser:
 
 ```mermaid
 flowchart TD
-  A[Window]-- DOM > B[document];
-  A -- BOM > C[navigator];
-  A -- JavaScript > D[Object];
+  %% Define nodes
+  A[Window]:::window
+  B[document]:::dom
+  C[navigator]:::bom
+  D[Object]:::js
 
+  %% DOM Column
+  B --> B1[...]
+  
+  %% BOM Column
+  C --> D1[screen]
+  C --> D2[location]
+  C --> D3[frames]
+  C --> D4[history]
+  C --> D5[document]
+  C --> D6[XMLHttpRequest]
+  
+  %% JavaScript Objects Column
+  D --> J1[Array]
+  D --> J2[Function]
+  D --> J3[...]
+
+  %% Connections
+  A --> B
+  A --> C
+  A --> D
+
+  %% Styles
+  classDef dom fill:#a8f0a0,stroke:#000,stroke-width:1px;  %% green
+  classDef bom fill:#a0c4f0,stroke:#000,stroke-width:1px;  %% blue
+  classDef js fill:#f0a0a0,stroke:#000,stroke-width:1px;   %% red
+  class A window
+  class B,B1 dom
+  class C,C1,C2,C3,C4,C5,C6 bom
+  class D,D1,D2,D3 js
 ```
 
 ### 2. DOM tree
