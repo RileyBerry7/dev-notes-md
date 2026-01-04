@@ -50,10 +50,20 @@ The *document* object is the main 'ery point' to the page. We can change or crea
 Example:
 ```js
 
-document.body.style.backround = "red";
+document.body.style.backround = "red";                      // Change backround to red
 
-setTimeout(() => document.body.style.backround = "", 1000);
+setTimeout(() => document.body.style.backround = "", 1000); // Change it back after 1 second
 ```
+
+**Note:** The DOM is not only for Web-browsers.
+
+  - The DOM sepcification explains the structure of a document and provides objects/api.
+  These are non-browser instruments that use DOM too:
+  Server-side scripts that download HTML pages and process them can use the DOM.
+
+#### CSSOM for Styling
+
+
 ---
 
 ### 3. Walking the DOM
