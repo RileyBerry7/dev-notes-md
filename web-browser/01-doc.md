@@ -13,6 +13,14 @@ A *host environment* provides its own objects and functions in addtion to the la
 
 Here is a bird's eye view of what we have when JS runs in a Web-browser:
 
+```mermaid
+flowchart TD
+  A[Window]-- DOM > B[document];
+  A -- BOM > C[navigator];
+  A -- JavaScript > D[Object];
+
+```
+
 ### 2. DOM tree
 ### 3. Walking the DOM
 ### 4. Searching: getElement*, querySelector*
